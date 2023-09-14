@@ -23,26 +23,20 @@ namespace Quiz_Assignment
             }
             else
             {
-                // Check if questionsTable exists in ViewState
                 if (ViewState["questionsTable"] != null)
                 {
                     questionsTable = (DataTable)ViewState["questionsTable"];
                 }
                 else
                 {
-                    // Handle the case where questionsTable in ViewState is null or missing
-                    // You can log an error or display a message to the user.
                 }
 
-                // Check if currentQuestionIndex exists in ViewState
                 if (ViewState["currentQuestionIndex"] != null)
                 {
                     currentQuestionIndex = (int)ViewState["currentQuestionIndex"];
                 }
                 else
                 {
-                    // Handle the case where currentQuestionIndex in ViewState is null or missing
-                    // You can log an error or display a message to the user.
                 }
             }
         }
@@ -65,10 +59,7 @@ namespace Quiz_Assignment
             }
             catch (Exception ex)
             {
-                // Handle database connection error, log the exception, and possibly display an error message to the user.
-                // For example:
-                // Response.Write("An error occurred while loading questions from the database: " + ex.Message);
-                // Log the exception using a logging framework or write it to a log file.
+                Response.Write("An error occurred while loading questions from the database: " + ex.Message);
             }
         }
 
@@ -101,10 +92,9 @@ namespace Quiz_Assignment
 
         protected void NextButton_Click(object sender, EventArgs e)
         {
-            // Get the user's email address from the TextBox
+
             string userEmail = GetUserEmail();
 
-            // Validate that an email address is provided (you can add more robust validation)
             if (string.IsNullOrEmpty(userEmail))
             {
                 Response.Write("Please enter your email address.");
@@ -112,7 +102,7 @@ namespace Quiz_Assignment
             }
 
             // Get the selected response from the RadioButtonList
-             selectedResponse = AnswerChoices.SelectedValue;
+            selectedResponse = AnswerChoices.SelectedValue;
 
             // Save the user's response to the database
             SaveResponseToDatabase(userEmail, selectedResponse);
@@ -126,10 +116,7 @@ namespace Quiz_Assignment
             else
             {
                 Response.Redirect("ExamResult.aspx");
-                //Response.Write("No more questions to display."); 
             }
-
-            // Display the next question or quiz completion message
             DisplayCurrentQuestion();
         }
 
@@ -143,9 +130,7 @@ namespace Quiz_Assignment
             }
             else
             {
-                // If the cookie doesn't exist or is empty, you can handle it here
-                // For example, you can redirect the user to the login page or display an error message
-                Response.Redirect("LoginPage.aspx"); // Redirect to the login page
+                Response.Redirect("LoginPage.aspx");
                 return null; // Or return an appropriate default value
             }
         }
@@ -158,7 +143,7 @@ namespace Quiz_Assignment
                 {
                     connection.Open();
                     SqlCommand cmd = new SqlCommand("INSERT INTO UserAnswers (QuestionID, UserEmail, SelectedAnswer) VALUES (@QuestionID, @UserEmail, @SelectedAnswer)", connection);
-                    cmd.Parameters.AddWithValue("@QuestionID", currentQuestionIndex+1);
+                    cmd.Parameters.AddWithValue("@QuestionID", currentQuestionIndex + 1);
                     cmd.Parameters.AddWithValue("@UserEmail", email);
                     cmd.Parameters.AddWithValue("@SelectedAnswer", selectedResponse);
                     int K = cmd.ExecuteNonQuery();
@@ -166,10 +151,7 @@ namespace Quiz_Assignment
             }
             catch (Exception ex)
             {
-                // Handle database connection error, log the exception, and possibly display an error message to the user.
-                // For example:
-                // Response.Write("An error occurred while saving the response to the database: " + ex.Message);
-                // Log the exception using a logging framework or write it to a log file.
+                Response.Write("An error occurred while saving the response to the database: " + ex.Message);
             }
         }
 

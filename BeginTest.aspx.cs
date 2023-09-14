@@ -17,17 +17,11 @@ namespace Quiz_Assignment
 
         protected void beginexambtnclick(object sender, EventArgs e)
         {
-            // Get the entered email
                 string userEmail = txtemail.Text;
 
-                // Validate the email format (basic validation)
                 if (IsValidEmail(userEmail))
                 {
-                    // Save the email in a cookie with a 7-day expiration
                     Response.Cookies["user_email"].Value = userEmail;
-                    Response.Cookies["user_email"].Expires = DateTime.Now.AddDays(7);
-
-                    // Redirect to the questions page (replace 'Questions.aspx' with your actual questions page)
                     Response.Redirect("QuestionPage.aspx");
                 }
             else
