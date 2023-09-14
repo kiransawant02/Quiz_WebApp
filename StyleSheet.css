@@ -1,0 +1,60 @@
+﻿/* styles.css */
+
+/* Style the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the form container */
+#form-container {
+    text-align: center;
+    margin-top: 100px;
+}
+
+/* Style the label and input field */
+label {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style the "BEGIN EXAM" button */
+#begin-exam-btn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+    #begin-exam-btn:hover {
+        background-color: #0056b3;
+    }
+/* styles.css */
+
+/* Style the button with the "custom-button" class */
+.custom-button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+    .custom-button:hover {
+        background-color: #0056b3;
+    }
